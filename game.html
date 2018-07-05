@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rock-Paper-Scissors</title>
+	<script type="text/javascript">
+		function computerPlay() {
+			let rand_num = Math.floor((Math.random() * 10) + 1);
+			if ( rand_num > 1 && rand_num <= 3) {
+				return "Rock";
+			} else if ( rand_num > 3 && rand_num <= 6 ) {
+				return "Paper";
+			} else {
+				return "Scissors";
+			}
+		}
+
+		function playGame(playerSelection, computerSelection) {
+			//playerSelection = playerSelection.toLowerCase();
+			//computerSelection = computerSelection.toLowerCase();
+			if ( playerSelection == "rock" ){
+				if ( computerSelection == "paper" ){
+					return "paper";
+				} else if ( computerSelection == "scissors" ) {
+					return "rock";
+				} else {
+					return "tie";
+				}
+			} else if ( playerSelection == "paper" ) {
+				if ( computerSelection == "rock") {
+					return "paper";
+				} else if ( computerSelection == "scissors" ) {
+					return "scissors";
+				} else {
+					return "tie";
+				}
+			} else if ( playerSelection == "scissors" ) {
+				if ( computerSelection == "rock") {
+					return "rock";
+				} else if ( computerSelection == "paper" ) {
+					return "scissors";
+				} else {
+					return "tie";
+				}
+			}
+		}
+
+		function determineWinner(playerScore, computerScore){
+			if ( playerScore > computerScore ) { 
+				console.log("You won!");
+			} else if ( playerScore < computerScore ) {
+				console.log("Computer won!");
+			} else {
+				console.log("Tie!");
+			}
+		}
+
+		function game() {
+			let playerScore = 0;
+			let computerScore = 0;
+
+			for( let i = 0; i < 5; i++ ){
+				let playerSelection = (prompt("Enter either Rock, Paper or Scissors")).toLowerCase();
+				let computerSelection = (computerPlay()).toLowerCase();
+				let results = playGame(playerSelection, computerSelection);
+
+				if( results == playerSelection){
+					playerScore++;
+				} else if ( results == computerSelection ){
+					computerScore++;
+				}
+
+				if( results != "tie" ){
+					console.log(`The winner of round ${i+1} is ${results}!`);
+				} else {
+					console.log("This round resulted in a Tie!");
+				}
+			}
+			console.log("Results:");
+			console.log(`You: ${playerScore}`);
+			console.log(`Computer: ${computerScore}`);
+			determineWinner(playerScore, computerScore);
+
+		}
+		game();
+	</script>
+</head>
+<body>
+
+</body>
+</html>
